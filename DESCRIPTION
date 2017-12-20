@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: RPostgres
-Version: 1.0-3
-Date: 2017-12-06
+Version: 1.0-4
+Date: 2017-12-20
 Title: 'Rcpp' Interface to 'PostgreSQL'
 Authors@R: c(
     person("Hadley", "Wickham", role = "aut"),
@@ -16,6 +16,10 @@ Authors@R: c(
 Description: 
     Fully 'DBI'-compliant 'Rcpp'-backed interface to 'PostgreSQL' <https://www.postgresql.org/>,
     an open-source relational database.
+URL: https://github.com/r-dbi/RPostgres
+BugReports: https://github.com/r-dbi/RPostgres/issues
+SystemRequirements: libpq >= 9.0: libpq-dev (deb) or postgresql-devel
+        (rpm)
 License: GPL-2
 LazyLoad: true
 Depends: R (>= 3.1.0)
@@ -28,7 +32,7 @@ Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
         'transactions.R' 'utils.R'
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
-Packaged: 2017-12-06 00:17:52 UTC; muelleki
+Packaged: 2017-12-20 13:58:34 UTC; muelleki
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [cre],
@@ -39,4 +43,4 @@ Author: Hadley Wickham [aut],
   Kungliga Tekniska Högskolan [ctb] (Source code for timegm)
 Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
 Repository: CRAN
-Date/Publication: 2017-12-06 10:21:43 UTC
+Date/Publication: 2017-12-20 15:50:56 UTC
