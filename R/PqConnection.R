@@ -7,7 +7,7 @@ NULL
 #' @export
 setClass("PqConnection",
   contains = "DBIConnection",
-  slots = list(ptr = "externalptr", bigint = "character")
+  slots = list(ptr = "externalptr", bigint = "character", typnames = "data.frame")
 )
 
 # show()
@@ -32,14 +32,6 @@ setMethod("dbIsValid", "PqConnection", function(dbObj, ...) {
   connection_valid(dbObj@ptr)
 })
 
-# dbDisconnect()
-#' @export
-#' @rdname dbConnect-PqDriver-method
-setMethod("dbDisconnect", "PqConnection", function(conn, ...) {
-  connection_release(conn@ptr)
-  invisible(TRUE)
-})
-
 # dbSendQuery()
 
 # dbSendStatement()
@@ -57,6 +49,7 @@ get_data_type <- function(obj) {
   if (inherits(obj, "POSIXt")) return("TIMESTAMPTZ")
   if (inherits(obj, "Date")) return("DATE")
   if (inherits(obj, "difftime")) return("TIME")
+  if (inherits(obj, "integer64")) return("BIGINT")
   switch(typeof(obj),
     integer = "INTEGER",
     double = "REAL",
@@ -155,10 +148,20 @@ setMethod("dbConnect", "PqDriver",
       ptr <- connection_create(names(opts), as.vector(opts))
     }
 
-    con <- new("PqConnection", ptr = ptr, bigint = bigint)
+    con <- new("PqConnection", ptr = ptr, bigint = bigint, typnames = data.frame())
     dbExecute(con, "SET TIMEZONE='UTC'")
+    con@typnames <- dbGetQuery(con, "SELECT oid, typname FROM pg_type")
+
     con
   })
+
+# dbDisconnect() (after dbConnect() to maintain order in documentation)
+#' @export
+#' @rdname dbConnect-PqDriver-method
+setMethod("dbDisconnect", "PqConnection", function(conn, ...) {
+  connection_release(conn@ptr)
+  invisible(TRUE)
+})
 
 
 #' Determine database type for R vector.

@@ -5,8 +5,8 @@
 
 
 DbConnection::DbConnection(std::vector<std::string> keys, std::vector<std::string> values) :
-pCurrentResult_(NULL),
-transacting_(false)
+  pCurrentResult_(NULL),
+  transacting_(false)
 {
   size_t n = keys.size();
   std::vector<const char*> c_keys(n + 1), c_values(n + 1);
@@ -30,12 +30,15 @@ transacting_(false)
 }
 
 DbConnection::~DbConnection() {
+  LOG_VERBOSE;
   disconnect();
 }
 
 void DbConnection::disconnect() {
   try {
+    LOG_VERBOSE;
     PQfinish(pConn_);
+    LOG_VERBOSE;
     pConn_ = NULL;
   } catch (...) {}
 }
@@ -229,7 +232,7 @@ void DbConnection::conn_stop(PGconn* conn, const char* msg) {
 }
 
 void DbConnection::cleanup_query() {
-  if(pCurrentResult_ != NULL && !(pCurrentResult_->complete())) {
+  if (pCurrentResult_ != NULL && !(pCurrentResult_->complete())) {
     cancel_query();
   }
   finish_query();

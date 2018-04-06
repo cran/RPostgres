@@ -1,7 +1,10 @@
 #' @include PqConnection.R
 NULL
 
-#' Quote postgres strings and identifiers.
+#' Quote postgres strings, identifiers, and literals
+#'
+#' If an object of class [Id] is used for `dbQuoteIdentifier()`, it needs
+#' at most one `table` component and at most one `schema` component.
 #'
 #' @param conn A [PqConnection-class] created by `dbConnect()`
 #' @param x A character to escaped
@@ -40,7 +43,7 @@ setMethod("dbQuoteIdentifier", c("PqConnection", "character"), function(conn, x,
   if (anyNA(x)) {
     stop("Cannot pass NA to dbQuoteIdentifier()", call. = FALSE)
   }
-  SQL(connection_quote_identifier(conn@ptr, x))
+  SQL(connection_quote_identifier(conn@ptr, x), names = names(x))
 })
 
 #' @export
@@ -48,6 +51,49 @@ setMethod("dbQuoteIdentifier", c("PqConnection", "character"), function(conn, x,
 setMethod("dbQuoteIdentifier", c("PqConnection", "SQL"), function(conn, x, ...) {
   x
 })
+
+#' @export
+#' @rdname quote
+setMethod("dbQuoteIdentifier", c("PqConnection", "Id"), function(conn, x, ...) {
+  stopifnot(all(names(x@name) %in% c("schema", "table")))
+  stopifnot(!anyDuplicated(names(x@name)))
+
+  ret <- ""
+  if ("schema" %in% names(x@name)) {
+    ret <- paste0(ret, dbQuoteIdentifier(conn, x@name[["schema"]]), ".")
+  }
+  if ("table" %in% names(x@name)) {
+    ret <- paste0(ret, dbQuoteIdentifier(conn, x@name[["table"]]))
+  }
+  SQL(ret)
+})
+
+#' @export
+#' @rdname quote
+setMethod("dbUnquoteIdentifier", c("PqConnection", "SQL"), function(conn, x, ...) {
+  rx <- '^(?:(?:|"((?:[^"]|"")+)"[.])(?:|"((?:[^"]|"")*)")|([^". ]+))$'
+  bad <- grep(rx, x, invert = TRUE)
+  if (length(bad) > 0) {
+    stop("Can't unquote ", x[bad[[1]]], call. = FALSE)
+  }
+
+  schema <- gsub(rx, "\\1", x)
+  schema <- gsub('""', '"', schema)
+  table <- gsub(rx, "\\2", x)
+  table <- gsub('""', '"', table)
+  naked_table <- gsub(rx, "\\3", x)
+
+  ret <- Map(schema, table, naked_table, f = as_table)
+  names(ret) <- names(x)
+  ret
+})
+
+as_table <- function(schema, table, naked_table = NULL) {
+  args <- c(schema = schema, table = table, table = naked_table)
+  # Also omits NA args
+  args <- args[!is.na(args) & args != ""]
+  do.call(Id, as.list(args))
+}
 
 # locally for now, requires DBI > 0.7
 #' @rdname quote
@@ -58,9 +104,9 @@ setGeneric("dbQuoteLiteral",
 #' @export
 #' @rdname quote
 setMethod("dbQuoteLiteral", c("PqConnection", "logical"), function(conn, x, ...) {
-  x <- as.character(x)
-  x[is.na(x)] <- "NULL"
-  SQL(x)
+  ret <- as.character(x)
+  ret[is.na(ret)] <- "NULL"
+  SQL(ret, names = names(ret))
 })
 
 #' @export
@@ -68,7 +114,7 @@ setMethod("dbQuoteLiteral", c("PqConnection", "logical"), function(conn, x, ...)
 setMethod("dbQuoteLiteral", c("PqConnection", "integer"), function(conn, x, ...) {
   ret <- paste0(as.character(x), "::int4")
   ret[is.na(x)] <- "NULL"
-  SQL(ret)
+  SQL(ret, names = names(ret))
 })
 
 #' @export
@@ -76,7 +122,7 @@ setMethod("dbQuoteLiteral", c("PqConnection", "integer"), function(conn, x, ...)
 setMethod("dbQuoteLiteral", c("PqConnection", "numeric"), function(conn, x, ...) {
   ret <- paste0(as.character(x), "::float8")
   ret[is.na(x)] <- "NULL"
-  SQL(ret)
+  SQL(ret, names = names(ret))
 })
 
 #' @export
@@ -90,7 +136,7 @@ setMethod("dbQuoteLiteral", c("PqConnection", "factor"), function(conn, x, ...) 
 setMethod("dbQuoteLiteral", c("PqConnection", "Date"), function(conn, x, ...) {
   ret <- paste0("'", as.character(x), "'::date")
   ret[is.na(x)] <- "NULL"
-  SQL(ret)
+  SQL(ret, names = names(ret))
 })
 
 #' @export
@@ -98,7 +144,7 @@ setMethod("dbQuoteLiteral", c("PqConnection", "Date"), function(conn, x, ...) {
 setMethod("dbQuoteLiteral", c("PqConnection", "POSIXt"), function(conn, x, ...) {
   ret <- paste0("'", as.character(x), "'::timestamp")
   ret[is.na(x)] <- "NULL"
-  SQL(ret)
+  SQL(ret, names = names(ret))
 })
 
 #' @export
@@ -106,7 +152,7 @@ setMethod("dbQuoteLiteral", c("PqConnection", "POSIXt"), function(conn, x, ...) 
 setMethod("dbQuoteLiteral", c("PqConnection", "difftime"), function(conn, x, ...) {
   ret <- paste0(as.character(x), "::time")
   ret[is.na(x)] <- "NULL"
-  SQL(ret)
+  SQL(ret, names = names(ret))
 })
 
 #' @export
@@ -136,5 +182,5 @@ quote_blob <- function(x) {
       }
     }
   )
-  SQL(blob_data)
+  SQL(blob_data, names = names(x))
 }

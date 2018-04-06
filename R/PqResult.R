@@ -43,7 +43,8 @@ setMethod("dbGetRowsAffected", "PqResult", function(res, ...) {
 #' @rdname PqResult-class
 #' @export
 setMethod("dbColumnInfo", "PqResult", function(res, ...) {
-  result_column_info(res@ptr)
+  rci <- result_column_info(res@ptr)
+  cbind(rci, .typname = type_lookup(rci[[".oid"]], res@conn), stringsAsFactors = FALSE)
 })
 
 #' Execute a SQL statement on a database connection
@@ -116,7 +117,8 @@ setMethod("dbFetch", "PqResult", function(res, n = -1, ..., row.names = FALSE) {
   if (is.infinite(n)) n <- -1
   if (trunc(n) != n) stopc("n must be a whole number")
   ret <- sqlColumnToRownames(result_fetch(res@ptr, n = n), row.names)
-  convert_bigint(ret, res@bigint)
+  ret <- convert_bigint(ret, res@bigint)
+  finalize_types(ret, res@conn)
 })
 
 convert_bigint <- function(ret, bigint) {
@@ -129,6 +131,32 @@ convert_bigint <- function(ret, bigint) {
   is_int64 <- which(vlapply(ret, inherits, "integer64"))
   ret[is_int64] <- lapply(ret[is_int64], fun)
   ret
+}
+
+finalize_types <- function(ret, conn) {
+  known <- attr(ret, "known")
+  is_unknown <- which(!known)
+
+  if (length(is_unknown) > 0) {
+    oids <- attr(ret, "oids")
+    typnames <- type_lookup(oids[is_unknown], conn)
+    typname_classes <- paste0("pq_", typnames)
+    ret[is_unknown] <- Map(set_class, ret[is_unknown], typname_classes)
+  }
+
+  attr(ret, "oids") <- NULL
+  attr(ret, "known") <- NULL
+  ret
+}
+
+set_class <- function(x, subclass = NULL) {
+  class(x) <- c(subclass)
+  x
+}
+
+type_lookup <- function(x, conn) {
+  typnames <- conn@typnames
+  typnames$typname[match(x, typnames$oid)]
 }
 
 #' @rdname postgres-query

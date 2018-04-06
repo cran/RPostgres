@@ -8,8 +8,10 @@
 \alias{dbReadTable,PqConnection,character-method}
 \alias{dbListTables,PqConnection-method}
 \alias{dbExistsTable,PqConnection,character-method}
+\alias{dbExistsTable,PqConnection,Id-method}
 \alias{dbRemoveTable,PqConnection,character-method}
 \alias{dbListFields,PqConnection,character-method}
+\alias{dbListObjects,PqConnection-method}
 \title{Convenience functions for reading/writing DBMS tables}
 \usage{
 \S4method{dbWriteTable}{PqConnection,character,data.frame}(conn, name, value,
@@ -25,9 +27,13 @@
 
 \S4method{dbExistsTable}{PqConnection,character}(conn, name, ...)
 
+\S4method{dbExistsTable}{PqConnection,Id}(conn, name, ...)
+
 \S4method{dbRemoveTable}{PqConnection,character}(conn, name, ...)
 
 \S4method{dbListFields}{PqConnection,character}(conn, name, ...)
+
+\S4method{dbListObjects}{PqConnection}(conn, prefix = NULL, ...)
 }
 \arguments{
 \item{conn}{a \linkS4class{PqConnection} object, produced by
@@ -77,6 +83,10 @@ SQL string.}
 
 \item{check.names}{If \code{TRUE}, the default, column names will be
 converted to valid R identifiers.}
+
+\item{prefix}{A fully qualified path in the database's namespace, or \code{NULL}.
+will be passed to \code{\link[=dbUnquoteIdentifier]{dbUnquoteIdentifier()}}.
+If given the method will return all objects accessible through this prefix.}
 }
 \description{
 Convenience functions for reading/writing DBMS tables
