@@ -44,7 +44,9 @@ setMethod("dbGetRowsAffected", "PqResult", function(res, ...) {
 #' @export
 setMethod("dbColumnInfo", "PqResult", function(res, ...) {
   rci <- result_column_info(res@ptr)
-  cbind(rci, .typname = type_lookup(rci[[".oid"]], res@conn), stringsAsFactors = FALSE)
+  rci <- cbind(rci, .typname = type_lookup(rci[[".oid"]], res@conn), stringsAsFactors = FALSE)
+  rci$name <- tidy_names(rci$name)
+  rci
 })
 
 #' Execute a SQL statement on a database connection
@@ -118,19 +120,23 @@ setMethod("dbFetch", "PqResult", function(res, n = -1, ..., row.names = FALSE) {
   if (trunc(n) != n) stopc("n must be a whole number")
   ret <- sqlColumnToRownames(result_fetch(res@ptr, n = n), row.names)
   ret <- convert_bigint(ret, res@bigint)
-  finalize_types(ret, res@conn)
+  ret <- finalize_types(ret, res@conn)
+  set_tidy_names(ret)
 })
 
-convert_bigint <- function(ret, bigint) {
-  if (bigint == "integer64") return(ret)
-  fun <- switch(bigint,
+convert_bigint <- function(df, bigint) {
+  if (bigint == "integer64") return(df)
+  is_int64 <- which(vlapply(df, inherits, "integer64"))
+  if (length(is_int64) == 0) return(df)
+
+  as_bigint <- switch(bigint,
     integer = as.integer,
     numeric = as.numeric,
     character = as.character
   )
-  is_int64 <- which(vlapply(ret, inherits, "integer64"))
-  ret[is_int64] <- lapply(ret[is_int64], fun)
-  ret
+
+  df[is_int64] <- suppressWarnings(lapply(df[is_int64], as_bigint))
+  df
 }
 
 finalize_types <- function(ret, conn) {

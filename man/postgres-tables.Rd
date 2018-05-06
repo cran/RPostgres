@@ -5,12 +5,14 @@
 \alias{postgres-tables}
 \alias{dbWriteTable,PqConnection,character,data.frame-method}
 \alias{sqlData,PqConnection-method}
+\alias{dbAppendTable,DBIConnection-method}
 \alias{dbReadTable,PqConnection,character-method}
 \alias{dbListTables,PqConnection-method}
 \alias{dbExistsTable,PqConnection,character-method}
 \alias{dbExistsTable,PqConnection,Id-method}
 \alias{dbRemoveTable,PqConnection,character-method}
 \alias{dbListFields,PqConnection,character-method}
+\alias{dbListFields,PqConnection,Id-method}
 \alias{dbListObjects,PqConnection-method}
 \title{Convenience functions for reading/writing DBMS tables}
 \usage{
@@ -18,7 +20,10 @@
   ..., row.names = FALSE, overwrite = FALSE, append = FALSE,
   field.types = NULL, temporary = FALSE, copy = TRUE)
 
-\S4method{sqlData}{PqConnection}(con, value, row.names = FALSE, copy = TRUE)
+\S4method{sqlData}{PqConnection}(con, value, row.names = FALSE, ...)
+
+\S4method{dbAppendTable}{DBIConnection}(conn, name, value, ...,
+  row.names = NULL)
 
 \S4method{dbReadTable}{PqConnection,character}(conn, name, ...,
   check.names = TRUE, row.names = FALSE)
@@ -29,9 +34,12 @@
 
 \S4method{dbExistsTable}{PqConnection,Id}(conn, name, ...)
 
-\S4method{dbRemoveTable}{PqConnection,character}(conn, name, ...)
+\S4method{dbRemoveTable}{PqConnection,character}(conn, name, ...,
+  temporary = FALSE, fail_if_missing = TRUE)
 
 \S4method{dbListFields}{PqConnection,character}(conn, name, ...)
+
+\S4method{dbListFields}{PqConnection,Id}(conn, name, ...)
 
 \S4method{dbListObjects}{PqConnection}(conn, prefix = NULL, ...)
 }
@@ -45,7 +53,7 @@ just any valid bare table name.}
 
 \item{value}{A data.frame to write to the database.}
 
-\item{...}{Other arguments used by individual methods.}
+\item{...}{Ignored.}
 
 \item{row.names}{Either \code{TRUE}, \code{FALSE}, \code{NA} or a string.
 
@@ -68,28 +76,34 @@ in the DBMS. Its default is \code{FALSE}.}
 the names are the names of new table's columns. If missing, types inferred
 with \code{\link[DBI:dbDataType]{DBI::dbDataType()}}).}
 
-\item{temporary}{If \code{TRUE}, will generate a temporary table statement.}
+\item{temporary}{If \code{TRUE}, only temporary tables are considered.}
 
 \item{copy}{If \code{TRUE}, serializes the data frame to a single string
 and uses \code{COPY name FROM stdin}. This is fast, but not supported by
 all postgres servers (e.g. Amazon's redshift). If \code{FALSE}, generates
-a single SQL string. This is slower, but always supported.
-
-RPostgres does not use parameterised queries to insert rows because
-benchmarks revealed that this was considerably slower than using a single
-SQL string.}
+a single SQL string. This is slower, but always supported.}
 
 \item{con}{A database connection.}
 
 \item{check.names}{If \code{TRUE}, the default, column names will be
 converted to valid R identifiers.}
 
+\item{fail_if_missing}{If \code{FALSE}, \code{dbRemoveTable()} succeeds if the
+table doesn't exist.}
+
 \item{prefix}{A fully qualified path in the database's namespace, or \code{NULL}.
-will be passed to \code{\link[=dbUnquoteIdentifier]{dbUnquoteIdentifier()}}.
+This argument will be processed with \code{\link[=dbUnquoteIdentifier]{dbUnquoteIdentifier()}}.
 If given the method will return all objects accessible through this prefix.}
 }
 \description{
-Convenience functions for reading/writing DBMS tables
+\code{\link[=dbWriteTable]{dbWriteTable()}} executes several SQL statements that
+create/overwrite a table and fill it with values.
+\pkg{RPostgres} does not use parameterised queries to insert rows because
+benchmarks revealed that this was considerably slower than using a single
+SQL string.
+
+\code{\link[=dbAppendTable]{dbAppendTable()}} is overridden because \pkg{RPostgres}
+uses placeholders of the form \code{$1}, \code{$2} etc. instead of \code{?}.
 }
 \examples{
 # For running the examples on systems without PostgreSQL connection:
