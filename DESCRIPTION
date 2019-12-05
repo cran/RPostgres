@@ -1,6 +1,6 @@
 Package: RPostgres
 Title: 'Rcpp' Interface to 'PostgreSQL'
-Version: 1.1.1
+Version: 1.1.2
 Date: 2018-05-05
 Authors@R: c(
     person("Hadley", "Wickham", role = "aut"),
@@ -31,7 +31,7 @@ Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
         'RcppExports.R' 'default.R' 'export.R' 'names.R' 'quote.R'
         'tables.R' 'transactions.R' 'utils.R'
 NeedsCompilation: yes
-Packaged: 2018-05-06 17:03:57 UTC; kirill
+Packaged: 2019-12-03 07:12:17 UTC; ripley
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
@@ -41,4 +41,4 @@ Author: Hadley Wickham [aut],
     from RPostgreSQL)
 Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
 Repository: CRAN
-Date/Publication: 2018-05-06 20:51:11 UTC
+Date/Publication: 2019-12-03 12:22:03 UTC

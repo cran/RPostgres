@@ -1,4 +1,4 @@
-85dd2cf337d9a9194158947e394a0449 *DESCRIPTION
+93242c671ef9d7a9a5e23833f8037f59 *DESCRIPTION
 0c8c9e67470d022b724f52ebaef8dd3d *NAMESPACE
 f52995dc67d4c52bd6abcb83392bb587 *NEWS.md
 ea0b679f7bd7080deb4d7702f03190e0 *R/PqConnection.R
@@ -40,7 +40,7 @@ bdb2b7ed1a0c451b46b90f5ba0cae405 *src/DbColumnDataSourceFactory.h
 00308bd348a82fa234bc3faf490c3bb5 *src/DbColumnStorage.h
 635e7a8ce8fad8137bb62dac19e44acd *src/DbConnection.cpp
 91fd7039d2c543d73abf05c10937928a *src/DbConnection.h
-52f74e46125617344b9ef6c064922057 *src/DbDataFrame.cpp
+c41da7463fca6efa57dee940b96b7c42 *src/DbDataFrame.cpp
 aa6b004a18a443064e92833378f109c6 *src/DbDataFrame.h
 863c387085575330973494a7ec75f061 *src/DbResult.cpp
 1b26b8077ef82ec2a40c598aadccd5b9 *src/DbResult.h
