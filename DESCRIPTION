@@ -1,7 +1,7 @@
 Package: RPostgres
 Title: 'Rcpp' Interface to 'PostgreSQL'
-Version: 1.2.0
-Date: 2019-12-17
+Version: 1.2.1
+Date: 2020-09-28
 Authors@R: 
     c(person(given = "Hadley",
              family = "Wickham",
@@ -35,14 +35,14 @@ Suggests: DBItest (>= 1.7.0), testthat
 LinkingTo: BH, plogr (>= 0.2.0), Rcpp
 Encoding: UTF-8
 LazyLoad: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 SystemRequirements: libpq >= 9.0: libpq-dev (deb) or postgresql-devel
         (rpm)
 Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
-        'RcppExports.R' 'default.R' 'export.R' 'names.R' 'quote.R'
-        'tables.R' 'transactions.R' 'utils.R'
+        'RcppExports.R' 'Redshift.R' 'default.R' 'export.R' 'names.R'
+        'quote.R' 'tables.R' 'transactions.R' 'utils.R'
 NeedsCompilation: yes
-Packaged: 2019-12-18 08:47:19 UTC; kirill
+Packaged: 2020-09-28 10:23:42 UTC; kirill
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
@@ -52,4 +52,4 @@ Author: Hadley Wickham [aut],
     from RPostgreSQL)
 Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
 Repository: CRAN
-Date/Publication: 2019-12-18 09:50:02 UTC
+Date/Publication: 2020-09-28 11:10:02 UTC
