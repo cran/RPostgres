@@ -107,12 +107,6 @@ as_table <- function(catalog, schema, table) {
   do.call(Id, as.list(args))
 }
 
-# locally for now, requires DBI > 0.7
-#' @rdname quote
-setGeneric("dbQuoteLiteral",
-  def = function(conn, x, ...) standardGeneric("dbQuoteLiteral")
-)
-
 #' @export
 #' @rdname quote
 setMethod("dbQuoteLiteral", c("PqConnection", "logical"), function(conn, x, ...) {
@@ -162,7 +156,10 @@ setMethod("dbQuoteLiteral", c("PqConnection", "POSIXt"), function(conn, x, ...) 
 #' @export
 #' @rdname quote
 setMethod("dbQuoteLiteral", c("PqConnection", "difftime"), function(conn, x, ...) {
-  ret <- paste0(as.character(x), "::time")
+  # https://github.com/tidyverse/hms/issues/84
+  mode(x) <- "double"
+
+  ret <- paste0("'", as.character(hms::as_hms(x)), "'::interval")
   ret[is.na(x)] <- "NULL"
   SQL(ret, names = names(ret))
 })
@@ -172,9 +169,6 @@ setMethod("dbQuoteLiteral", c("PqConnection", "difftime"), function(conn, x, ...
 setMethod("dbQuoteLiteral", c("PqConnection", "list"), function(conn, x, ...) {
   quote_blob(x)
 })
-
-# Workaround, remove when blob > 1.1.0 is on CRAN
-setOldClass("blob")
 
 #' @export
 #' @rdname quote

@@ -121,6 +121,7 @@ setMethod("dbFetch", "PqResult", function(res, n = -1, ..., row.names = FALSE) {
   ret <- sqlColumnToRownames(result_fetch(res@ptr, n = n), row.names)
   ret <- convert_bigint(ret, res@bigint)
   ret <- finalize_types(ret, res@conn)
+  ret <- fix_timezone(ret, res@conn)
   set_tidy_names(ret)
 })
 
@@ -152,6 +153,25 @@ finalize_types <- function(ret, conn) {
 
   attr(ret, "oids") <- NULL
   attr(ret, "known") <- NULL
+  ret
+}
+
+fix_timezone <- function(ret, conn) {
+  is_without_tz <- which(attr(ret, "without_tz"))
+  if (length(is_without_tz) > 0) {
+    ret[is_without_tz] <- lapply(ret[is_without_tz], function(x) {
+      x <- lubridate::with_tz(x, "UTC")
+      lubridate::force_tz(x, conn@timezone)
+    })
+  }
+
+  is_datetime <- which(vapply(ret, inherits, "POSIXt", FUN.VALUE = logical(1)))
+  if (length(is_datetime) > 0) {
+    ret[is_datetime] <- lapply(ret[is_datetime], lubridate::with_tz, conn@timezone_out)
+  }
+
+  attr(ret, "without_tz") <- NULL
+
   ret
 }
 
@@ -202,7 +222,11 @@ fix_posixt <- function(value) {
 
 difftime_to_hms <- function(value) {
   is_difftime <- vlapply(value, inherits, "difftime")
-  value[is_difftime] <- lapply(value[is_difftime], hms::as_hms)
+  # https://github.com/tidyverse/hms/issues/84
+  value[is_difftime] <- lapply(value[is_difftime], function(x) {
+    mode(x) <- "double"
+    hms::as_hms(x)
+  })
   value
 }
 
