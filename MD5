@@ -1,7 +1,7 @@
-b6cdb8ace409650a3108614aeb8e5836 *DESCRIPTION
+1ca97ffca75ba2196f132fa5317084f9 *DESCRIPTION
 3ba426cf8e5c98bb899cd54a4e592ceb *NAMESPACE
-8d60705c88c8279299d2606f1882630d *NEWS.md
-d90a88fb3431a580d7ae071f37093644 *R/PqConnection.R
+de086f17a7a8506b572c0ec0bf00f8a2 *NEWS.md
+c7fa5215e58b85a1bfb7c3c7ed22fa0d *R/PqConnection.R
 a070b1343f8d8bf4c86fc402e12e9803 *R/PqDriver.R
 d91225b6dafaf79bba8c41888e32b327 *R/PqResult.R
 0b846aae48eacea9831cd61b50eedea2 *R/RPostgres-pkg.R
@@ -16,7 +16,7 @@ bbad0daadf44d8a9a43a0a720bef3803 *R/transactions.R
 22824e9abd9b0a99ea42edf515701240 *R/utils.R
 113143188ddb38b3bce4512b9534b656 *README.md
 36809b99fc1dff597991a76cfc4ca14c *build/vignette.rds
-8fad2f1af783aa9394dd4c5486a6ebe8 *configure
+c9d6bc10551058726fd47b4ce17b3dd3 *configure
 d41d8cd98f00b204e9800998ecf8427e *configure.win
 36766fb1a7527a8d3c477d9c96f423f0 *inst/doc/work-queue.R
 a9f10a75d524cf4186e99523c3a6125f *inst/doc/work-queue.Rmd
@@ -95,7 +95,7 @@ a81f5dd62df14a99a5c959e5748c0091 *tests/testthat/test-dbGetQuery.R
 7373bd9dc8dab391a83ebfbcc52633c3 *tests/testthat/test-dbQuoteIdentifier.R
 859f6c8a6bff30f1f72d1def1440e39b *tests/testthat/test-dbWriteTable.R
 07ec38d74f52ade1ddc67997730ad1ca *tests/testthat/test-encoding.R
-bad7deea5344c2f9e02a4af0a963b964 *tests/testthat/test-timezone.R
+a9a9e9542fa0e278504a1b0bce468e45 *tests/testthat/test-timezone.R
 76b610eb3c1116bb15b7f76834e41209 *tests/testthat/test-types.R
 7e42b08e8c74f8f721af62cd91fb3084 *tests/testthat/test-waitForNotify.R
 14abd2023341cbf0b71e250107c1feb3 *tools/winlibs.R
