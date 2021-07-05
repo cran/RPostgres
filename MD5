@@ -1,6 +1,6 @@
-667e8e64d1ba360e94f428145686ace2 *DESCRIPTION
+31773c6be6eed93a0befd5dbcf15e6da *DESCRIPTION
 3ba426cf8e5c98bb899cd54a4e592ceb *NAMESPACE
-d080dc560f3825a835f7281fb2203ccc *NEWS.md
+947483ee1b04e307871528564227520a *NEWS.md
 e4a693f3c913ca889d961d68b1686c1d *R/PqConnection.R
 a070b1343f8d8bf4c86fc402e12e9803 *R/PqDriver.R
 17162623499afabd0ad1e090e14cca7c *R/PqResult.R
@@ -15,12 +15,12 @@ c5497949eb1f47b24120170f688d4d04 *R/default.R
 bbad0daadf44d8a9a43a0a720bef3803 *R/transactions.R
 22824e9abd9b0a99ea42edf515701240 *R/utils.R
 f4a55c33173de520e9d07868db9b215b *README.md
-c0ebe9c2905e9295c2205af2eb6e2d28 *build/vignette.rds
-8ae684c3021824cd98bdcea10cb5ddd3 *configure
+147a55f07d27d15842d7855a3433ffbd *build/vignette.rds
+d3cbd73ac2853718828c10764a869610 *configure
 d41d8cd98f00b204e9800998ecf8427e *configure.win
-c934bcb7a78db331f2c97bf7cba059f8 *inst/doc/work-queue.R
+36766fb1a7527a8d3c477d9c96f423f0 *inst/doc/work-queue.R
 b85ef9d0239405df83e15c5b4a53c65e *inst/doc/work-queue.Rmd
-128668938683121662b19734e4f59571 *inst/doc/work-queue.html
+ff8412fe5a3bd9bb879585326d6421cf *inst/doc/work-queue.html
 8a0c1cfd185b0af284f1a32fe28dc64e *man/Postgres.Rd
 809eb0aa572aeae0521d78fc27f5854c *man/PqConnection-class.Rd
 f0cda4140152c4d9260438779f2baca6 *man/PqDriver-class.Rd
@@ -53,7 +53,8 @@ df6ee010b5f5637ba69f417d9d3ac656 *src/DbResult.h
 6c1a9122d8aeef539983d71fb6d7fa9e *src/DbResultImpl.h
 ff55e7f9ffcc22262b9f25b3f5c02491 *src/DbResultImplDecl.h
 122c17bb87c66c5b3ec8a97af383f845 *src/Makevars.in
-b498e98a1525090be9dd44248f87e12f *src/Makevars.win
+2cec33791efd347cbcb051402d7cf9c4 *src/Makevars.ucrt
+a1ce4939f121da5af16f6b274e02c671 *src/Makevars.win
 dc0c9c1a7018a5dbc69e21a8a81da07c *src/PqColumnDataSource.cpp
 767ea2a7c6e0de2e81f4b494637fa0e8 *src/PqColumnDataSource.h
 7ea23ce015d4e0a8c47581ae646f4f61 *src/PqColumnDataSourceFactory.cpp
@@ -62,7 +63,7 @@ dc0c9c1a7018a5dbc69e21a8a81da07c *src/PqColumnDataSource.cpp
 e991d1583380c2955033c447eb117afc *src/PqDataFrame.h
 a2669d7238dd67e99a9be4a6b3d9682d *src/PqResult.cpp
 17a3e10f931738042a5d9af943bdf283 *src/PqResult.h
-eff0c56a1c152a40d04d7881b905c607 *src/PqResultImpl.cpp
+d1155eb04548054e681b68a44c9c03a1 *src/PqResultImpl.cpp
 de491504b5eb076e4bcaff541f123c4b *src/PqResultImpl.h
 4601b2b6e925fa6761186d25fa93f9f5 *src/PqResultSource.cpp
 e2d8563ac79450e3f2347ebc5259ba0e *src/PqResultSource.h
@@ -1717,6 +1718,7 @@ f251e8d8c1249e774674be514615eeec *tests/testthat/helper-with_table.R
 12d4b2ba46626718ba9e48cfb763b1b8 *tests/testthat/test-DBItest.R
 1c856b3eccecaefc738acadd55ae3636 *tests/testthat/test-Redshift.R
 29890f7f72946cbf870c714ebeaee604 *tests/testthat/test-bigint.R
+2e9540130f566e26d8cba723b64c981e *tests/testthat/test-checkInterrupts.R
 a43898d0ffd33f8ad8fff8e6805d74c3 *tests/testthat/test-data-type.R
 1eb01045fcf55d6094c6d528af1df1af *tests/testthat/test-dbConnect.R
 a81f5dd62df14a99a5c959e5748c0091 *tests/testthat/test-dbGetQuery.R
