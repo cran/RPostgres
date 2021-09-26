@@ -1,5 +1,36 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# RPostgres 1.4.0 (2021-09-25)
+
+## Features
+
+- `Redshift()` connections now adhere to almost all of the DBI specification when connecting to a Redshift cluster. BLOBs are not supported on Redshift, and there are limitations with enumerating temporary and persistent tables (#215, #326).
+- `dbBegin()`, `dbCommit()` and `dbRollback()` gain `name` argument to support savepoints. An unnamed transaction must be started beforehand (#13).
+- `dbWriteTable()` uses a transaction (#307).
+- `dbSendQuery()` gains `immediate` argument. Multiple queries (separated by semicolons) can be passed in this mode, query parameters are not supported (#272).
+- `dbConnect(check_interrupts = TRUE)` now aborts a running query faster and more reliably when the user signals an interrupt, e.g. by pressing Ctrl+C (#336).
+- `dbAppendTable()` gains `copy` argument. If set to `TRUE`, data is imported via `COPY name FROM STDIN` (#241, @hugheylab).
+- Postgres `NOTICE` messages are now forwarded as proper R messages and can be captured and suppressed (#208).
+
+## Bug fixes
+
+- `dbQuoteLiteral()` converts timestamp values to input time zone, used when writing tables to Redshift (#325).
+
+## Internal
+
+- Skip timestamp tests on i386 (#318).
+- `dbSendQuery()` and `dbQuoteLiteral()` use single dispatch (#320).
+- `dbWriteTable()` and `dbAppendTable()` default to `copy = NULL`, this translates to `TRUE` for `Postgres()` and `FALSE` for `Redshift()` connections (#329). 
+
+## Documentation
+
+- Order help topics on pkgdown site.
+- Use `@examplesIf` in method documentation.
+- Document when `field.types` is used in `dbWriteTable()` (#206).
+- Document setting the tablespace before writing a table (#246).
+- Tweak error message for named `params` argument to `dbBind()` (#266).
+
+
 # RPostgres 1.3.3 (2021-07-05)
 
 - Fix `dbConnect(check_interrupts = TRUE)` on Windows (#244, @zozlak).
