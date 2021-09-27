@@ -1,6 +1,6 @@
-d11946e34865fbaf3e1e2e045b0b27b3 *DESCRIPTION
+0cb1942601096a926df8d6d2e49b0f24 *DESCRIPTION
 3ba426cf8e5c98bb899cd54a4e592ceb *NAMESPACE
-5b1734c5647fe2100dc6c3908db41fac *NEWS.md
+97248d9a46e0ef81945881bf816d009d *NEWS.md
 6f363c855773abea4a6ccad4aeeba9ef *R/PqConnection.R
 a070b1343f8d8bf4c86fc402e12e9803 *R/PqDriver.R
 ef6ee9ea318c7fc3bfdc2e9cdeb0d1c9 *R/PqResult.R
@@ -18,9 +18,9 @@ f4a55c33173de520e9d07868db9b215b *README.md
 e9f416244990496500037511798a75d0 *build/vignette.rds
 56817d2d8e66f64fbbd677ec277bcf3a *configure
 d41d8cd98f00b204e9800998ecf8427e *configure.win
-4c53d7de3e0efdb40ac795d7a2f9ec6e *inst/doc/work-queue.R
+8000b439e478dba7fe70d722dafafb99 *inst/doc/work-queue.R
 b87ee293c031dd9146bde6502b9c71d8 *inst/doc/work-queue.Rmd
-561e63133c997b23cc1f5938b7bd84c3 *inst/doc/work-queue.html
+373ba6bec1ad55d979eaa77986af8040 *inst/doc/work-queue.html
 a235baa1a86ec8f41be910d112165ec9 *man/Postgres.Rd
 809eb0aa572aeae0521d78fc27f5854c *man/PqConnection-class.Rd
 f0cda4140152c4d9260438779f2baca6 *man/PqDriver-class.Rd
@@ -63,7 +63,7 @@ dc0c9c1a7018a5dbc69e21a8a81da07c *src/PqColumnDataSource.cpp
 e991d1583380c2955033c447eb117afc *src/PqDataFrame.h
 79c8fecf150b35d6e4b4f55603b5e5d3 *src/PqResult.cpp
 5c30bfc925cbb848ccbcecb8d7ccdf58 *src/PqResult.h
-582af61e19daad26eca640212bf91ec5 *src/PqResultImpl.cpp
+cc8d04ce2fe0a19ad33b9d512489f520 *src/PqResultImpl.cpp
 4ad681c3ee9c9581e21cb19e8bec2bcf *src/PqResultImpl.h
 4601b2b6e925fa6761186d25fa93f9f5 *src/PqResultSource.cpp
 e2d8563ac79450e3f2347ebc5259ba0e *src/PqResultSource.h

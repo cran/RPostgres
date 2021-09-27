@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# RPostgres 1.4.1 (2021-09-26)
+
+## Bug fixes
+
+- Avoid crash by dereferencing 0-size vector (#343). 
+
+
 # RPostgres 1.4.0 (2021-09-25)
 
 ## Features

@@ -1,7 +1,7 @@
 Package: RPostgres
 Title: Rcpp Interface to PostgreSQL
-Version: 1.4.0
-Date: 2021-09-25
+Version: 1.4.1
+Date: 2021-09-26
 Authors@R: 
     c(person(given = "Hadley",
              family = "Wickham",
@@ -43,7 +43,7 @@ Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
         'RcppExports.R' 'Redshift.R' 'default.R' 'export.R' 'names.R'
         'quote.R' 'tables.R' 'transactions.R' 'utils.R'
 NeedsCompilation: yes
-Packaged: 2021-09-26 05:35:49 UTC; kirill
+Packaged: 2021-09-26 22:07:24 UTC; kirill
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
@@ -53,4 +53,4 @@ Author: Hadley Wickham [aut],
     from RPostgreSQL)
 Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
 Repository: CRAN
-Date/Publication: 2021-09-26 06:00:02 UTC
+Date/Publication: 2021-09-27 10:10:13 UTC
