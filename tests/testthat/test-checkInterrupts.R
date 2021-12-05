@@ -1,18 +1,17 @@
 context("checkInterrupts")
 
-test_that("check_interrupts = TRUE works with queries > 1 second (#244)", {
+test_that("check_interrupts = TRUE works with queries < 1 second (#244)", {
   con <- postgresDefault(check_interrupts = TRUE)
-  expect_equal(dbGetQuery(con, "SELECT pg_sleep(0.2), 'foo' AS x")$x, "foo")
+  time <- system.time(
+    expect_equal(dbGetQuery(con, "SELECT pg_sleep(0.2), 'foo' AS x")$x, "foo")
+  )
+  expect_lt(time[["elapsed"]], 0.9)
   dbDisconnect(con)
 })
 
 test_that("check_interrupts = TRUE interrupts immediately (#336)", {
   skip_if_not(postgresHasDefault())
   skip_if(Sys.getenv("R_COVR") != "")
-  skip_if(getRversion() < "4.0")
-
-  # For skipping if not available
-  dbDisconnect(postgresDefault())
 
   session <- callr::r_session$new()
 
@@ -25,33 +24,15 @@ test_that("check_interrupts = TRUE interrupts immediately (#336)", {
   })
 
   session$call(function() {
-    tryCatch(
-      print(dbGetQuery(.GlobalEnv$conn, "SELECT pg_sleep(3)")),
-      error = identity
-    )
+    dbGetQuery(.GlobalEnv$conn, "SELECT pg_sleep(10)")
   })
 
-  session$poll_process(500)
-  expect_null(session$read())
-
+  expect_equal(session$poll_process(500), "timeout")
   session$interrupt()
+  # Interrupts are slow on Windows, give ample time
+  expect_equal(session$poll_process(2000), "ready")
 
-  # Should take much less than 1.7 seconds
-  time <- system.time(
-    expect_equal(session$poll_process(3000), "ready")
-  )
-  expect_lt(time[["elapsed"]], 1.5)
-
-  local_edition(3)
-
-  # Should return a proper error message
-  out <- session$read()
-  out$message <- NULL
-  out$stderr <- gsub("\r\n", "", out$stderr)
-
-  expect_snapshot({
-    out
-  })
+  # Tests for error behavior are brittle
 
   session$close()
 })
