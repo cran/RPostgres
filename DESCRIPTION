@@ -1,7 +1,7 @@
 Package: RPostgres
 Title: Rcpp Interface to PostgreSQL
-Version: 1.4.2
-Date: 2021-12-05
+Version: 1.4.3
+Date: 2021-12-20
 Authors@R: 
     c(person(given = "Hadley",
              family = "Wickham",
@@ -40,10 +40,40 @@ RoxygenNote: 7.1.2
 SystemRequirements: libpq >= 9.0: libpq-dev (deb) or postgresql-devel
         (rpm)
 Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
-        'RcppExports.R' 'Redshift.R' 'default.R' 'export.R' 'names.R'
-        'quote.R' 'tables.R' 'transactions.R' 'utils.R'
+        'RcppExports.R' 'Redshift.R' 'dbAppendTable_PqConnection.R'
+        'dbBegin_PqConnection.R' 'dbBind_PqResult.R'
+        'dbClearResult_PqResult.R' 'dbColumnInfo_PqResult.R'
+        'dbCommit_PqConnection.R' 'dbConnect_PqDriver.R'
+        'dbConnect_RedshiftDriver.R' 'dbDataType_PqConnection.R'
+        'dbDataType_PqDriver.R' 'dbDisconnect_PqConnection.R'
+        'dbExistsTable_PqConnection_Id.R'
+        'dbExistsTable_PqConnection_character.R' 'dbFetch_PqResult.R'
+        'dbGetInfo_PqConnection.R' 'dbGetInfo_PqDriver.R'
+        'dbGetRowCount_PqResult.R' 'dbGetRowsAffected_PqResult.R'
+        'dbGetStatement_PqResult.R' 'dbHasCompleted_PqResult.R'
+        'dbIsValid_PqConnection.R' 'dbIsValid_PqDriver.R'
+        'dbIsValid_PqResult.R' 'dbListFields_PqConnection_Id.R'
+        'dbListFields_PqConnection_character.R'
+        'dbListObjects_PqConnection_ANY.R'
+        'dbListTables_PqConnection.R'
+        'dbQuoteIdentifier_PqConnection_Id.R'
+        'dbQuoteIdentifier_PqConnection_SQL.R'
+        'dbQuoteIdentifier_PqConnection_character.R'
+        'dbQuoteLiteral_PqConnection.R'
+        'dbQuoteString_PqConnection_SQL.R'
+        'dbQuoteString_PqConnection_character.R'
+        'dbReadTable_PqConnection_character.R'
+        'dbRemoveTable_PqConnection_character.R'
+        'dbRollback_PqConnection.R' 'dbSendQuery_PqConnection.R'
+        'dbUnloadDriver_PqDriver.R'
+        'dbUnquoteIdentifier_PqConnection_SQL.R'
+        'dbWriteTable_PqConnection_character_data.frame.R' 'default.R'
+        'export.R' 'names.R' 'quote.R' 'show_PqConnection.R'
+        'sqlData_PqConnection.R' 'tables.R' 'transactions.R' 'utils.R'
+Config/autostyle/scope: line_breaks
+Config/autostyle/strict: false
 NeedsCompilation: yes
-Packaged: 2021-12-05 11:37:19 UTC; kirill
+Packaged: 2021-12-20 04:54:09 UTC; kirill
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
@@ -53,4 +83,4 @@ Author: Hadley Wickham [aut],
     from RPostgreSQL)
 Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
 Repository: CRAN
-Date/Publication: 2021-12-05 12:10:02 UTC
+Date/Publication: 2021-12-20 05:30:02 UTC

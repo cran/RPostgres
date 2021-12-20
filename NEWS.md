@@ -1,5 +1,17 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# RPostgres 1.4.3 (2021-12-20)
+
+## Features
+
+- New `postgresIsTransacting()` (#351, @jakob-r).
+- Temporary tables are now discovered correctly for `Redshift()` connections, all DBItest tests pass (#358, @galachad).
+
+## Internal
+
+- Make method definition more similar to S3. All `setMethod()` calls refer to top-level functions (#380).
+
+
 # RPostgres 1.4.2 (2021-12-05)
 
 ## Features

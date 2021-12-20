@@ -11,7 +11,8 @@ DbConnection::DbConnection(std::vector<std::string> keys, std::vector<std::strin
                            bool check_interrupts) :
   pCurrentResult_(NULL),
   transacting_(false),
-  check_interrupts_(check_interrupts)
+  check_interrupts_(check_interrupts),
+  temp_schema_(CharacterVector::create(NA_STRING))
 {
   size_t n = keys.size();
   std::vector<const char*> c_keys(n + 1), c_values(n + 1);
@@ -88,6 +89,8 @@ void DbConnection::reset_current_result(const DbResult* pResult) {
  * https://www.postgresql.org/docs/current/libpq-cancel.html
  **/
 void DbConnection::cancel_query() {
+  LOG_DEBUG;
+
   check_connection();
 
   // first allocate a 'cancel command' data structure.
@@ -96,6 +99,8 @@ void DbConnection::cancel_query() {
   //  * the connection is invalid.
   PGcancel* cancel = PQgetCancel(pConn_);
   if (cancel == NULL) stop("Connection error detected via PQgetCancel()");
+
+  LOG_DEBUG;
 
   // PQcancel() actually issues the cancel command to the backend.
   char errbuf[256];
@@ -243,6 +248,14 @@ bool DbConnection::is_transacting() const {
 
 void DbConnection::set_transacting(bool transacting) {
   transacting_ = transacting;
+}
+
+CharacterVector DbConnection::get_temp_schema() const {
+  return temp_schema_;
+}
+
+void DbConnection::set_temp_schema(CharacterVector temp_schema) {
+  temp_schema_ = temp_schema;
 }
 
 void DbConnection::conn_stop(const char* msg) {
