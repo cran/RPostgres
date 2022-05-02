@@ -1,6 +1,6 @@
-ac66172e3db538416fdc6194cc34aa27 *DESCRIPTION
+92bb53055f17f94b44047214344aed02 *DESCRIPTION
 b52e1078b4b0405007128c31f6f8ed1b *NAMESPACE
-79312e752347b613d3065cce7e2c5498 *NEWS.md
+5833947fa5c5b75ba84b5e2db8b1615e *NEWS.md
 388fca0846a54b24e9dc1ac9c91cfdd0 *R/PqConnection.R
 48613afd9946063124f944328674e890 *R/PqDriver.R
 4befd7c835e430124a947e45e7256d0c *R/PqResult.R
@@ -13,7 +13,7 @@ d3a56f46f9ee99d14a891afd5147cbf7 *R/dbBind_PqResult.R
 b22a85e8dccbd406fc825777c7b890ca *R/dbClearResult_PqResult.R
 2d3480930bd5cb1f76f185000494f308 *R/dbColumnInfo_PqResult.R
 2d9bf662c7b6ade16a2996cc93d808c3 *R/dbCommit_PqConnection.R
-3913ba915b9f2d19c7650ded877c7c8d *R/dbConnect_PqDriver.R
+b22a6dd63d1103ad2b40f7f61e6e342e *R/dbConnect_PqDriver.R
 0d60625a25f1bffb31b8a5f066c9043c *R/dbConnect_RedshiftDriver.R
 acb10571ab90a91099e00e8f8fa13990 *R/dbDataType_PqConnection.R
 15ce35a82d4e075836ad69a70e16c4d6 *R/dbDataType_PqDriver.R
@@ -57,12 +57,12 @@ b83d0f0867b92a5ac8d882a397ac86b0 *R/dbUnquoteIdentifier_PqConnection_SQL.R
 62e0632ccbffebab692280412d351386 *R/transactions.R
 5b2835cb80913f7e866393f57030f78b *R/utils.R
 c9827f06133bf65a9743acb2c99a5511 *README.md
-e9f416244990496500037511798a75d0 *build/vignette.rds
+a9f2b43857d4ea756389fc5b27b02a2e *build/vignette.rds
 2a4d75e6bfa77ae0c7ba0932407ceb5c *configure
 d41d8cd98f00b204e9800998ecf8427e *configure.win
 8000b439e478dba7fe70d722dafafb99 *inst/doc/work-queue.R
 b87ee293c031dd9146bde6502b9c71d8 *inst/doc/work-queue.Rmd
-1c3053d1628d28602fbc108e653495a1 *inst/doc/work-queue.html
+e117aa554144ca231c287a1632211f05 *inst/doc/work-queue.html
 dde29acb804a147131cd6d7eba7189e0 *man/Postgres.Rd
 35c6b26a71015c1ce67ce93960554b74 *man/PqConnection-class.Rd
 6f00d8809ed540dc09f4280680721f22 *man/PqDriver-class.Rd
@@ -87,7 +87,7 @@ bdb2b7ed1a0c451b46b90f5ba0cae405 *src/DbColumnDataSourceFactory.h
 1ba5afa61895d800dbe19155f7d2c492 *src/DbColumnDataType.h
 a767727e50cd53b612b09375d2fbb15f *src/DbColumnStorage.cpp
 e24e7165514d9c6d82259d8c0ed4dfe6 *src/DbColumnStorage.h
-2b02b552db91332ca5e194fa7d5e8460 *src/DbConnection.cpp
+ffb925dea94345116eec5a0815991e1d *src/DbConnection.cpp
 fa59e3ffc8ac721cb7b1df3f9f66794d *src/DbConnection.h
 88c4b3ef93800b937a4ac6028b7da482 *src/DbDataFrame.cpp
 aa6b004a18a443064e92833378f109c6 *src/DbDataFrame.h
@@ -1752,7 +1752,7 @@ aaf844f158cf0592d537c95457f773a4 *src/vendor/boost/utility/base_from_member.hpp
 45c9f078378c203b4a02d4f27f83186b *src/vendor/boost/version.hpp
 61108cfe1e8bd3ae15c893600d38907d *src/vendor/boost/visit_each.hpp
 4111945e05f4e4a31c72f6ef63b1f1e6 *tests/testthat.R
-54eb7bec9b89c0006e66872eb7f32800 *tests/testthat/helper-DBItest.R
+fa8ef3eacc2e03f57c3726add291dbf2 *tests/testthat/helper-DBItest.R
 60e9b2574eb76a3da502315b6630c2a5 *tests/testthat/helper-astyle.R
 5f99bf46169a27c39db6b35611d0da42 *tests/testthat/helper-with_database_connection.R
 f251e8d8c1249e774674be514615eeec *tests/testthat/helper-with_table.R
@@ -1760,14 +1760,14 @@ f251e8d8c1249e774674be514615eeec *tests/testthat/helper-with_table.R
 d80c39ce9cac5ea0a89645ef38c1b554 *tests/testthat/test-DBItest.R
 e0978113335c6fad731ea2f2ee259c44 *tests/testthat/test-Redshift.R
 29890f7f72946cbf870c714ebeaee604 *tests/testthat/test-bigint.R
-247a748e3f2c7dda0ee9d1955ed6f467 *tests/testthat/test-checkInterrupts.R
+d47afaf3f9e400b0b0e046647963adf3 *tests/testthat/test-checkInterrupts.R
 a43898d0ffd33f8ad8fff8e6805d74c3 *tests/testthat/test-data-type.R
 37c33c1651be76fbf2b2388f3383b616 *tests/testthat/test-dbConnect.R
 4d4a1ed6dd3cac85be793cee202434b4 *tests/testthat/test-dbGetQuery.R
 6cb99a955d8c279b107382262d16d86f *tests/testthat/test-dbQuoteIdentifier.R
 dc8dd4e18b28eb38e5f6728517545986 *tests/testthat/test-dbWriteTable.R
 07ec38d74f52ade1ddc67997730ad1ca *tests/testthat/test-encoding.R
-94967ba5d1e9a12149b7ddd92062579e *tests/testthat/test-immediate.R
+6ef34ac3a8b10242f4dabc820c29da81 *tests/testthat/test-immediate.R
 cde4deea1f469340912440765856c486 *tests/testthat/test-isTransacting.R
 a9a9e9542fa0e278504a1b0bce468e45 *tests/testthat/test-timezone.R
 6168ca0b8281698c7abd4ffff879cfca *tests/testthat/test-transactions.R
