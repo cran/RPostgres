@@ -1,42 +1,35 @@
 Package: RPostgres
 Title: Rcpp Interface to PostgreSQL
-Version: 1.4.4
-Date: 2022-05-01
-Authors@R: 
-    c(person(given = "Hadley",
-             family = "Wickham",
-             role = "aut"),
-      person(given = "Jeroen",
-             family = "Ooms",
-             role = "aut"),
-      person(given = "Kirill",
-             family = "M\u00fcller",
-             role = c("aut", "cre"),
-             email = "krlmlr+r@mailbox.org",
-             comment = c(ORCID = "0000-0002-1416-3412")),
-      person(given = "RStudio",
-             role = "cph"),
-      person(given = "R Consortium",
-             role = "fnd"),
-      person(given = "Tomoaki",
-             family = "Nishiyama",
-             role = "ctb",
-             comment = "Code for encoding vectors into strings derived from RPostgreSQL"))
-Description: Fully DBI-compliant Rcpp-backed interface to
-    PostgreSQL <https://www.postgresql.org/>, an open-source relational
-    database.
+Version: 1.4.5
+Date: 2023-01-19
+Authors@R: c(
+    person("Hadley", "Wickham", role = "aut"),
+    person("Jeroen", "Ooms", role = "aut"),
+    person("Kirill", "Müller", , "kirill@cynkra.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1416-3412")),
+    person("RStudio", role = "cph"),
+    person("R Consortium", role = "fnd"),
+    person("Tomoaki", "Nishiyama", role = "ctb",
+           comment = "Code for encoding vectors into strings derived from RPostgreSQL")
+  )
+Description: Fully DBI-compliant Rcpp-backed interface to PostgreSQL
+    <https://www.postgresql.org/>, an open-source relational database.
 License: GPL-3
 URL: https://rpostgres.r-dbi.org, https://github.com/r-dbi/RPostgres
 BugReports: https://github.com/r-dbi/RPostgres/issues
 Depends: R (>= 3.1.0)
 Imports: bit64, blob (>= 1.2.0), DBI (>= 1.1.0), hms (>= 1.0.0),
         lubridate, methods, Rcpp (>= 1.0.7), withr
-Suggests: callr, covr, DBItest (>= 1.7.1), knitr, rmarkdown, testthat
+Suggests: callr, covr, DBItest (>= 1.7.2.9001), knitr, rmarkdown,
+        testthat (>= 3.0.0)
 LinkingTo: plogr (>= 0.2.0), Rcpp
 VignetteBuilder: knitr
+Config/autostyle/scope: line_breaks
+Config/autostyle/strict: false
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyLoad: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 SystemRequirements: libpq >= 9.0: libpq-dev (deb) or postgresql-devel
         (rpm)
 Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
@@ -70,10 +63,8 @@ Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
         'dbWriteTable_PqConnection_character_data.frame.R' 'default.R'
         'export.R' 'names.R' 'quote.R' 'show_PqConnection.R'
         'sqlData_PqConnection.R' 'tables.R' 'transactions.R' 'utils.R'
-Config/autostyle/scope: line_breaks
-Config/autostyle/strict: false
 NeedsCompilation: yes
-Packaged: 2022-05-01 15:58:33 UTC; kirill
+Packaged: 2023-01-19 20:16:25 UTC; kirill
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
@@ -81,6 +72,6 @@ Author: Hadley Wickham [aut],
   R Consortium [fnd],
   Tomoaki Nishiyama [ctb] (Code for encoding vectors into strings derived
     from RPostgreSQL)
-Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
+Maintainer: Kirill Müller <kirill@cynkra.com>
 Repository: CRAN
-Date/Publication: 2022-05-02 08:50:05 UTC
+Date/Publication: 2023-01-20 17:20:02 UTC
