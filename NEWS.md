@@ -1,4 +1,43 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# RPostgres 1.4.6 (2023-10-22)
+
+## Breaking changes
+
+- Breaking change: `dbListObjects()` only allows `Id()` objects as `prefix` argument (@dpprdan, #390).
+
+## Bug fixes
+
+- Use `NULL` in favor of `NULL::text` when quoting strings and literals, to support JSON and other text-ish types. Fixes a regression introduced in #370 (#393, #425).
+
+## Features
+
+- `dbQuoteLiteral()` correctly quotes 64-bit integers from the bit64 package (of class `"integer64"`) (@karawoo, #435, #436).
+
+- Breaking change: `dbListObjects()` only allows `Id()` objects as `prefix` argument (@dpprdan, #390).
+
+## Libraries
+
+- Windows: update to libpq-15.3 (#442).
+
+- Upgrade boost to 1.81.0-1 to fix sprintf warnings (#417).
+
+## Documentation
+
+- Suppress warning in gcc-12 (#443).
+
+- Tweak driver docs (@dpprdan, #433).
+
+- Relicense as MIT.
+
+## Testing
+
+- Close result set.
+
+## Internal
+
+- Replace Rcpp by cpp11 (@Antonov548, #419).
+
 
 # RPostgres 1.4.5 (2023-01-19)
 
