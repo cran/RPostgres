@@ -1,7 +1,7 @@
 Package: RPostgres
 Title: C++ Interface to PostgreSQL
-Version: 1.4.7
-Date: 2024-05-26
+Version: 1.4.8
+Date: 2025-02-24
 Authors@R: c(
     person("Hadley", "Wickham", role = "aut"),
     person("Jeroen", "Ooms", role = "aut"),
@@ -31,7 +31,7 @@ Config/autostyle/strict: false
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyLoad: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2.9000
 SystemRequirements: libpq >= 9.0: libpq-dev (deb) or postgresql-devel
         (rpm)
 Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
@@ -66,7 +66,7 @@ Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
         'export.R' 'quote.R' 'show_PqConnection.R'
         'sqlData_PqConnection.R' 'tables.R' 'transactions.R' 'utils.R'
 NeedsCompilation: yes
-Packaged: 2024-05-26 20:04:39 UTC; kirill
+Packaged: 2025-02-25 05:33:04 UTC; kirill
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
   Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
@@ -76,4 +76,4 @@ Author: Hadley Wickham [aut],
     from RPostgreSQL)
 Maintainer: Kirill Müller <kirill@cynkra.com>
 Repository: CRAN
-Date/Publication: 2024-05-27 10:30:02 UTC
+Date/Publication: 2025-02-25 07:30:02 UTC
