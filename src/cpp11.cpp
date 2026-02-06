@@ -78,6 +78,14 @@ extern "C" SEXP _RPostgres_connection_import_lo_from_file(SEXP con, SEXP filenam
   END_CPP11
 }
 // connection.cpp
+void connection_export_lo_to_file(DbConnection* con, Oid oid, std::string filename);
+extern "C" SEXP _RPostgres_connection_export_lo_to_file(SEXP con, SEXP oid, SEXP filename) {
+  BEGIN_CPP11
+    connection_export_lo_to_file(cpp11::as_cpp<cpp11::decay_t<DbConnection*>>(con), cpp11::as_cpp<cpp11::decay_t<Oid>>(oid), cpp11::as_cpp<cpp11::decay_t<std::string>>(filename));
+    return R_NilValue;
+  END_CPP11
+}
+// connection.cpp
 void connection_copy_data(DbConnection* con, std::string sql, cpp11::list df);
 extern "C" SEXP _RPostgres_connection_copy_data(SEXP con, SEXP sql, SEXP df) {
   BEGIN_CPP11
@@ -126,14 +134,6 @@ std::string encrypt_password(cpp11::r_string password, cpp11::r_string user);
 extern "C" SEXP _RPostgres_encrypt_password(SEXP password, SEXP user) {
   BEGIN_CPP11
     return cpp11::as_sexp(encrypt_password(cpp11::as_cpp<cpp11::decay_t<cpp11::r_string>>(password), cpp11::as_cpp<cpp11::decay_t<cpp11::r_string>>(user)));
-  END_CPP11
-}
-// logging.cpp
-void init_logging(const std::string& log_level);
-extern "C" SEXP _RPostgres_init_logging(SEXP log_level) {
-  BEGIN_CPP11
-    init_logging(cpp11::as_cpp<cpp11::decay_t<const std::string&>>(log_level));
-    return R_NilValue;
   END_CPP11
 }
 // result.cpp
@@ -207,6 +207,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_RPostgres_client_version",                 (DL_FUNC) &_RPostgres_client_version,                 0},
     {"_RPostgres_connection_copy_data",           (DL_FUNC) &_RPostgres_connection_copy_data,           3},
     {"_RPostgres_connection_create",              (DL_FUNC) &_RPostgres_connection_create,              3},
+    {"_RPostgres_connection_export_lo_to_file",   (DL_FUNC) &_RPostgres_connection_export_lo_to_file,   3},
     {"_RPostgres_connection_get_temp_schema",     (DL_FUNC) &_RPostgres_connection_get_temp_schema,     1},
     {"_RPostgres_connection_import_lo_from_file", (DL_FUNC) &_RPostgres_connection_import_lo_from_file, 3},
     {"_RPostgres_connection_info",                (DL_FUNC) &_RPostgres_connection_info,                1},
@@ -221,7 +222,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_RPostgres_encode_data_frame",              (DL_FUNC) &_RPostgres_encode_data_frame,              1},
     {"_RPostgres_encode_vector",                  (DL_FUNC) &_RPostgres_encode_vector,                  1},
     {"_RPostgres_encrypt_password",               (DL_FUNC) &_RPostgres_encrypt_password,               2},
-    {"_RPostgres_init_logging",                   (DL_FUNC) &_RPostgres_init_logging,                   1},
     {"_RPostgres_result_bind",                    (DL_FUNC) &_RPostgres_result_bind,                    2},
     {"_RPostgres_result_column_info",             (DL_FUNC) &_RPostgres_result_column_info,             1},
     {"_RPostgres_result_create",                  (DL_FUNC) &_RPostgres_result_create,                  3},

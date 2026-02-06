@@ -1,7 +1,7 @@
 Package: RPostgres
 Title: C++ Interface to PostgreSQL
-Version: 1.4.8
-Date: 2025-02-24
+Version: 1.4.9
+Date: 2026-02-05
 Authors@R: c(
     person("Hadley", "Wickham", role = "aut"),
     person("Jeroen", "Ooms", role = "aut"),
@@ -22,7 +22,7 @@ Imports: bit64, blob (>= 1.2.0), DBI (>= 1.2.0), hms (>= 1.0.0),
         lubridate, methods, withr
 Suggests: callr, covr, DBItest (>= 1.7.3), knitr, rlang, rmarkdown,
         testthat (>= 3.0.0)
-LinkingTo: cpp11, plogr (>= 0.2.0)
+LinkingTo: cpp11
 Config/Needs/website: r-dbi/dbitemplate
 VignetteBuilder: knitr
 Config/Needs/build: decor
@@ -31,7 +31,7 @@ Config/autostyle/strict: false
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyLoad: true
-RoxygenNote: 7.3.2.9000
+RoxygenNote: 7.3.3.9000
 SystemRequirements: libpq >= 9.0: libpq-dev (deb) or postgresql-devel
         (rpm)
 Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
@@ -66,14 +66,15 @@ Collate: 'PqDriver.R' 'PqConnection.R' 'PqResult.R' 'RPostgres-pkg.R'
         'export.R' 'quote.R' 'show_PqConnection.R'
         'sqlData_PqConnection.R' 'tables.R' 'transactions.R' 'utils.R'
 NeedsCompilation: yes
-Packaged: 2025-02-25 05:33:04 UTC; kirill
+Packaged: 2026-02-05 20:15:40 UTC; kirill
 Author: Hadley Wickham [aut],
   Jeroen Ooms [aut],
-  Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),
+  Kirill Müller [aut, cre] (ORCID:
+    <https://orcid.org/0000-0002-1416-3412>),
   RStudio [cph],
   R Consortium [fnd],
   Tomoaki Nishiyama [ctb] (Code for encoding vectors into strings derived
     from RPostgreSQL)
 Maintainer: Kirill Müller <kirill@cynkra.com>
 Repository: CRAN
-Date/Publication: 2025-02-25 07:30:02 UTC
+Date/Publication: 2026-02-06 06:40:48 UTC

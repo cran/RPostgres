@@ -40,6 +40,10 @@ connection_import_lo_from_file <- function(con, filename, oid) {
   .Call(`_RPostgres_connection_import_lo_from_file`, con, filename, oid)
 }
 
+connection_export_lo_to_file <- function(con, oid, filename) {
+  invisible(.Call(`_RPostgres_connection_export_lo_to_file`, con, oid, filename))
+}
+
 connection_copy_data <- function(con, sql, df) {
   invisible(.Call(`_RPostgres_connection_copy_data`, con, sql, df))
 }
@@ -66,10 +70,6 @@ encode_data_frame <- function(x) {
 
 encrypt_password <- function(password, user) {
   .Call(`_RPostgres_encrypt_password`, password, user)
-}
-
-init_logging <- function(log_level) {
-  invisible(.Call(`_RPostgres_init_logging`, log_level))
 }
 
 result_create <- function(con, sql, immediate) {

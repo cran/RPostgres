@@ -1,5 +1,22 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# RPostgres 1.4.9 (2026-02-05)
+
+## Features
+
+- New `postgresExportLargeObject()` function for exporting large objects to files (#519, #520).
+
+## Chore
+
+- Remove plogr (#545).
+
+- Format C++ code with clang-format.
+
+## Documentation
+
+- Add comprehensive GitHub Copilot instructions (#522).
+
+
 # RPostgres 1.4.8 (2025-02-25)
 
 ## Windows
@@ -138,7 +155,7 @@
 
 ## Bug fixes
 
-- Avoid crash by dereferencing 0-size vector (#343). 
+- Avoid crash by dereferencing 0-size vector (#343).
 
 
 # RPostgres 1.4.0 (2021-09-25)
@@ -161,7 +178,7 @@
 
 - Skip timestamp tests on i386 (#318).
 - `dbSendQuery()` and `dbQuoteLiteral()` use single dispatch (#320).
-- `dbWriteTable()` and `dbAppendTable()` default to `copy = NULL`, this translates to `TRUE` for `Postgres()` and `FALSE` for `Redshift()` connections (#329). 
+- `dbWriteTable()` and `dbAppendTable()` default to `copy = NULL`, this translates to `TRUE` for `Postgres()` and `FALSE` for `Redshift()` connections (#329).
 
 ## Documentation
 
