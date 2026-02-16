@@ -1,7 +1,7 @@
-ecc2b883d5275406268320f2fd7dc123 *DESCRIPTION
+31563c9d0667dfa1ac5b549a883d1f9f *DESCRIPTION
 ed1507e99ed1dc3d11fe3c5207a862f8 *LICENSE
 64d746a215413c3bb30180904175e330 *NAMESPACE
-787adc2690bddb04649ed08c906f9974 *NEWS.md
+62e2e247ac11fee268453583965553e7 *NEWS.md
 1178644b4b74bf82e2731af2ea809a82 *R/PqConnection.R
 0e66df1a2e70e29d5f04530bc1e808b1 *R/PqDriver.R
 333373abd530f0bb3a1ae21dc7670d90 *R/PqResult.R
@@ -90,7 +90,7 @@ b65f14485efeb67d9fd236923f70c215 *src/DbColumnDataSourceFactory.h
 a776cd6c18090654714d12dbdd78c734 *src/DbColumnDataType.h
 c5c0f590146226e90b6326c8ed4bc340 *src/DbColumnStorage.cpp
 13ce4be833d028d53ea88c4148bc482b *src/DbColumnStorage.h
-660a40d144142424714d23f1fa263feb *src/DbConnection.cpp
+2348caa3a4329aea4ac8724faa33e3b8 *src/DbConnection.cpp
 52e70389cabdc9ff18e0163f4dade0fd *src/DbConnection.h
 38612e6430ffe1497aad68158e97c5e3 *src/DbDataFrame.cpp
 bdb74291d708f021c1680c30b1e34c12 *src/DbDataFrame.h
@@ -108,7 +108,7 @@ f750aa5531803a9cdf377139457f1bb1 *src/PqColumnDataSourceFactory.cpp
 fe76046165c175a4256c0c437c6c37f9 *src/PqDataFrame.h
 2acc76ba17b29deabd141b21be45ee79 *src/PqResult.cpp
 801d77f7cba895b4d02ca846edb00e39 *src/PqResult.h
-bbd05f5290b5d40b0974110f43f36c6c *src/PqResultImpl.cpp
+a8afbc35c0ae26b51a05005a14f45475 *src/PqResultImpl.cpp
 e24c0aed64c674d00539207e29efb2b5 *src/PqResultImpl.h
 476a989f34f737c68eecaeb8752b6044 *src/PqResultSource.cpp
 132a59e5f2cf0250ad675cb6a7367bb8 *src/PqResultSource.h
